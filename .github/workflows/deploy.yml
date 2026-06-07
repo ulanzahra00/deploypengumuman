@@ -14,8 +14,9 @@ jobs:
     - name: Jalankan SFTP Upload Bersih
       uses: wlixcc/SFTP-Deploy-Action@v1.2.4
       with:
-        username: ${{ secrets.FTP_USERNAME }}
+        # Parameter di bawah ini disesuaikan persis dengan kebutuhan plugin
         host: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
         ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.FTP_PORT }}
         local_path: './*'
