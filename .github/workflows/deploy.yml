@@ -1,22 +1,22 @@
-name: Deploy Website via SFTP Super Stabil
+name: Deploy Website via SFTP Murni
 on:
   push:
     branches:
       - main
 
 jobs:
-  web-deploy:
-    name: Deploy Project
+  deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Ambil kode terbaru dari GitHub
+    - name: Ambil kode dari GitHub
       uses: actions/checkout@v4
 
-    - name: Upload via SFTP (Secure FTP)
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+    - name: Jalankan SFTP Upload Bersih
+      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
       with:
-        server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.SSH_PRIVATE_KEY }}
+        host: ${{ secrets.FTP_SERVER }}
+        ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.FTP_PORT }}
-        server-dir: /public_html/deploypengumuman/
+        local_path: './*'
+        remote_path: '/public_html/deploypengumuman'
