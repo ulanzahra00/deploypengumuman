@@ -12,7 +12,7 @@ jobs:
     - name: Ambil kode terbaru dari GitHub
       uses: actions/checkout@v4
 
-    - name: Upload via FTP Baru
+    - name: Upload via FTP Baru Clean
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ${{ secrets.FTP_SERVER }}
