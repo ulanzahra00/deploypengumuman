@@ -20,8 +20,7 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         port: ${{ secrets.FTP_PORT }}
         server-dir: ./
-        force: true # Memaksa upload ulang seluruh file yang tertinggal
-        timeout: 600000
+        timeout: 900000 # Batas waktu tunggu dinaikkan jadi 15 menit
         exclude: |
           **/*.zip
           **/*.rar
