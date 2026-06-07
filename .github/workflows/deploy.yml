@@ -12,7 +12,7 @@ jobs:
     - name: Ambil kode terbaru dari GitHub
       uses: actions/checkout@v4
 
-    - name: Upload via FTP Kalem Anti-Block
+    - name: Upload via FTP Kecepatan Rendah
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ${{ secrets.FTP_SERVER }}
@@ -21,7 +21,7 @@ jobs:
         port: ${{ secrets.FTP_PORT }}
         server-dir: /public_html/deploypengumuman/
         timeout: 900000
-        # Trik utama: Memaksa GitHub kirim file satu demi satu tanpa paralel
+        log-level: verbose
         dangerous-clean-slate: false
         exclude: |
           **/*.zip
