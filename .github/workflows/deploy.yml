@@ -10,12 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Ambil kode terbaru dari GitHub
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4 # Diperbarui ke versi terbaru
 
     - name: Upload via FTP ke cPanel
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5 # Diperbarui ke versi paling stabil
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: public_html/pengumumanfix/
+        port: ${{ secrets.FTP_PORT }} # Menggunakan port dari secret Anda
+        server-dir: ./pengumumanfix/
+        security: true # PENTING: Memaksa menggunakan koneksi FTPS aman agar tidak timeout
