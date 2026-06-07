@@ -12,11 +12,17 @@ jobs:
     - name: Ambil kode terbaru dari GitHub
       uses: actions/checkout@v4
 
-    - name: Upload dan Buat Folder Otomatis
+    - name: Upload via FTP Pengumuman
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         port: ${{ secrets.FTP_PORT }}
-        server-dir: ./deploypengumuman/ # GitHub akan otomatis membuat folder ini jika belum ada
+        server-dir: ./
+        timeout: 600000 # Batas waktu tunggu diperpanjang hingga 10 menit
+        exclude: |
+          **/*.zip
+          **/*.rar
+          .git*
+          .git*/**
