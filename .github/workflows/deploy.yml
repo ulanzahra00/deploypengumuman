@@ -12,15 +12,15 @@ jobs:
     - name: Ambil kode terbaru dari GitHub
       uses: actions/checkout@v4
 
-    - name: Upload via FTP Kecepatan Rendah
+    - name: Upload via FTP ke cPanel
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         port: ${{ secrets.FTP_PORT }}
+        # DIBAWAH INI SUDAH DIPERBAIKI (Tanpa tanda titik di depan)
         server-dir: /public_html/deploypengumuman/
-        timeout: 900000
         log-level: verbose
         dangerous-clean-slate: false
         exclude: |
