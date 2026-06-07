@@ -1,4 +1,4 @@
-name: Deploy Website ke Hosting Arenhost
+name: Deploy Website via SFTP Super Stabil
 on:
   push:
     branches:
@@ -12,19 +12,11 @@ jobs:
     - name: Ambil kode terbaru dari GitHub
       uses: actions/checkout@v4
 
-    - name: Upload via FTP ke cPanel
+    - name: Upload via SFTP (Secure FTP)
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
+        password: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.FTP_PORT }}
-        # DIBAWAH INI SUDAH DIPERBAIKI (Tanpa tanda titik di depan)
         server-dir: /public_html/deploypengumuman/
-        log-level: verbose
-        dangerous-clean-slate: false
-        exclude: |
-          **/*.zip
-          **/*.rar
-          .git*
-          .git*/**
