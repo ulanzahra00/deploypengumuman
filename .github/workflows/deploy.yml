@@ -1,0 +1,21 @@
+name: Deploy Website ke Hosting Arenhost
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  web-deploy:
+    name: Deploy Project
+    runs-on: ubuntu-latest
+    steps:
+    - name: Ambil kode terbaru dari GitHub
+      uses: actions/checkout@v3
+
+    - name: Upload via FTP ke cPanel
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: public_html/pengumumanfix/
