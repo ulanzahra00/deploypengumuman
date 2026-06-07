@@ -12,7 +12,7 @@ jobs:
     - name: Ambil kode terbaru dari GitHub
       uses: actions/checkout@v4
 
-    - name: Upload via FTP Baru Clean
+    - name: Upload via FTP Utama Pasif
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ${{ secrets.FTP_SERVER }}
@@ -20,6 +20,7 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         port: ${{ secrets.FTP_PORT }}
         server-dir: /public_html/deploypengumuman/
+        state-name: .ftp-deploy-syncstate.json
         timeout: 900000
         exclude: |
           **/*.zip
