@@ -1,4 +1,5 @@
 name: Deploy Website via SFTP Murni
+
 on:
   push:
     branches:
@@ -8,16 +9,15 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Ambil kode dari GitHub
-      uses: actions/checkout@v4
+      - name: Ambil kode dari GitHub
+        uses: actions/checkout@v4
 
-    - name: Jalankan SFTP Upload Bersih
-      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-      with:
-        # Parameter di bawah ini disesuaikan persis dengan kebutuhan plugin
-        host: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: ${{ secrets.FTP_PORT }}
-        local_path: './*'
-        remote_path: '/public_html/deploypengumuman'
+      - name: Jalankan SFTP Upload Bersih
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          server: 'pgrikotamobagu.my.id'
+          username: ${{ secrets.FTP_USERNAME }}
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.FTP_PORT }}
+          local_path: './*'
+          remote_path: '/public_html/deploypengumuman'
