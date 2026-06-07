@@ -12,7 +12,7 @@ jobs:
     - name: Ambil kode terbaru dari GitHub
       uses: actions/checkout@v4
 
-    - name: Upload via FTP Pengumuman
+    - name: Upload via FTP Baru
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ${{ secrets.FTP_SERVER }}
@@ -20,7 +20,7 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         port: ${{ secrets.FTP_PORT }}
         server-dir: ./
-        timeout: 900000 # Batas waktu tunggu dinaikkan jadi 15 menit
+        timeout: 900000
         exclude: |
           **/*.zip
           **/*.rar
