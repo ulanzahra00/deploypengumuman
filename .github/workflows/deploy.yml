@@ -20,18 +20,24 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y lftp
-          lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "$FTP_SERVER" <<EOF
-          set ftp:ssl-allow no
+          lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "ftpes://$FTP_SERVER" <<EOF
+          set ftp:ssl-allow yes
+          set ftp:ssl-force yes
+          set ftp:ssl-protect-data yes
+          set ssl:verify-certificate no
           set ftp:passive-mode yes
-          set net:timeout 30
-          set net:max-retries 5
+          set net:timeout 60
+          set net:max-retries 10
           set net:reconnect-interval-base 10
           set net:reconnect-interval-max 60
+          set xfer:clobber yes
           mkdir -p /public_html/deploypengumuman
-          mirror --reverse --verbose --delete \
-            --exclude-glob .git/ \
-            --exclude-glob .github/ \
-            --exclude-glob .ftp-deploy-sync-state.json \
+          mirror --reverse --verbose --delete --continue --parallel=1 \
+            --exclude-glob=.git/ \
+            --exclude-glob=.github/ \
+            --exclude-glob=.sixth/ \
+            --exclude-glob=pengumuman.zip \
+            --exclude-glob=.ftp-deploy-sync-state.json \
             ./ /public_html/deploypengumuman/
           bye
           EOF
