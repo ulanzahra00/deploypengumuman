@@ -19,8 +19,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
-          protocol: ftps
-          security: loose
-          timeout: 120000
+          protocol: ftp
+          timeout: 300000
           local-dir: ./
           server-dir: /public_html/deploypengumuman/
