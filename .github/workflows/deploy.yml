@@ -20,7 +20,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y lftp
-          lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "ftpes://$FTP_SERVER" <<EOF
+          lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "ftp://$FTP_SERVER" <<EOF
           set ftp:ssl-allow yes
           set ftp:ssl-force yes
           set ftp:ssl-protect-data yes
