@@ -20,4 +20,4 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         port: ${{ secrets.FTP_PORT }} # Menggunakan port dari secret Anda
         server-dir: ./pengumumanfix/
-        security: true # PENTING: Memaksa menggunakan koneksi FTPS aman agar tidak timeout
+        security: "strict" # PENTING: Memaksa menggunakan koneksi FTPS aman agar tidak timeout
