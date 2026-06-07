@@ -10,14 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Ambil kode terbaru dari GitHub
-      uses: actions/checkout@v4 # Diperbarui ke versi terbaru
+      uses: actions/checkout@v4
 
-    - name: Upload via FTP ke cPanel
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5 # Diperbarui ke versi paling stabil
+    - name: Upload via FTP Mode Pasif
+      uses: Ishmael/ftp-deploy-action@v4.3.7
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        port: ${{ secrets.FTP_PORT }} # Menggunakan port dari secret Anda
+        port: ${{ secrets.FTP_PORT }}
         server-dir: ./pengumumanfix/
-        security: "strict" # PENTING: Memaksa menggunakan koneksi FTPS aman agar tidak timeout
+        passive: true # Memaksa koneksi menggunakan mode pasif agar lolos firewall hosting
