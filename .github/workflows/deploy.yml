@@ -18,6 +18,6 @@ jobs:
           server: 'pgrikotamobagu.my.id'
           username: ${{ secrets.FTP_USERNAME }}
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.FTP_PORT }}
+          port: 22
           local_path: './*'
           remote_path: '/public_html/deploypengumuman'
